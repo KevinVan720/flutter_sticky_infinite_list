@@ -373,17 +373,21 @@ class StickyListItem<I> extends Stack {
   /// Callback function that tells when header to stick to the bottom
   final MinOffsetProvider<I> minOffsetProvider;
 
+  final bool headerOnTop;
+
   StickyListItem({
+
     @required Widget header,
     @required Widget content,
     @required this.itemIndex,
     this.minOffsetProvider,
     this.streamSink,
+    this.headerOnTop=true,
     AlignmentDirectional alignment,
     Key key,
   }) : super(
           key: key,
-          children: [content, header],
+          children: headerOnTop ? [content, header] : [header, content],
           alignment: alignment ?? AlignmentDirectional.topStart,
           overflow: Overflow.clip,
         );
